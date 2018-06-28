@@ -17,6 +17,6 @@ so this variant is usually a very safe choice.
 
 ```dockerfile
 FROM alpine:3.7
-COPY --from=cirepo/alpine-glibc:3.7_2.23-r3 /data/glibc.tar /data/glibc.tar
-RUN tar xf /data/glibc.tar -C /
+COPY --from=cirepo/alpine-glibc:3.7_2.23-r3 /data/layer.tar /data/layer.tar
+RUN tar xf /data/layer.tar -C /
 ```
