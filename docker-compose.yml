@@ -1,0 +1,27 @@
+
+version: '2.1'
+services:
+  #docker-compose build builder
+  builder:
+    build:
+      context: .
+      dockerfile: Dockerfile_builder
+      args:
+      - IMAGE_ARG_ALPINE_MIRROR=${IMAGE_ARG_ALPINE_MIRROR:-mirror.tuna.tsinghua.edu.cn}
+      - IMAGE_ARG_FILESERVER=${IMAGE_ARG_FILESERVER:-http://o9wbz99tz.bkt.clouddn.com}
+      # Default values for JDK8
+      - IMAGE_ARG_GCCLIBS_VERSION=${IMAGE_ARG_GCCLIBS_VERSION:-}
+      - IMAGE_ARG_GLIBC_VERSION=${IMAGE_ARG_GLIBC_VERSION:-2.23-r3}
+      - IMAGE_ARG_ZLIB1_VERSION=${IMAGE_ARG_ZLIB1_VERSION:-}
+      # Default values for JDK9
+      #- IMAGE_ARG_GCCLIBS_VERSION=${IMAGE_ARG_GCCLIBS_VERSION:-7.3.1+20180406-1}
+      #- IMAGE_ARG_GLIBC_VERSION=${IMAGE_ARG_GLIBC_VERSION:-2.25-r0}
+      #- IMAGE_ARG_ZLIB1_VERSION=${IMAGE_ARG_ZLIB1_VERSION:-1.2.11-2}
+    image: ${IMAGE_PREFIX:-tmp}/builder:${IMAGE_TAG:-3.7-2.23-r3}
+  #docker-compose build alpine-glibc
+  alpine-glibc:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    image: ${IMAGE_PREFIX:-cirepo}/alpine-glibc:${IMAGE_TAG:-3.7-2.23-r3}
