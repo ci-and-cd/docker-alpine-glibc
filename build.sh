@@ -26,7 +26,7 @@ for layer in /tmp/builder/*/layer.tar; do
 done
 
 #LAST_DIFF_ID=$(docker image inspect -f '{{json .RootFS.Layers}}' ${BUILDER_IMAGE_NAME}:${IMAGE_TAG} | jq -r 'last' | awk -F':' '{print $2}')
-LAST_LAYER=$(find -d /tmp/builder -name "glibc-compat" | grep "/usr/glibc-compat" | awk -F'/' '{print $4}')
+LAST_LAYER=$(find /tmp/builder -name "glibc-compat" | grep "/usr/glibc-compat" | awk -F'/' '{print $4}')
 echo LAST_LAYER ${LAST_LAYER}
 
 #tar cf ${WORK_DIR}/data/glibc.tar -C /tmp/builder/${LAST_LAYER}/layer .
