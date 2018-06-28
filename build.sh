@@ -11,7 +11,7 @@ if [ -n "${CI_OPT_DOCKER_REGISTRY_PASS}" ] && [ -n "${CI_OPT_DOCKER_REGISTRY_USE
     echo ${CI_OPT_DOCKER_REGISTRY_PASS} | docker login --password-stdin -u="${CI_OPT_DOCKER_REGISTRY_USER}" docker.io
 fi
 
-IMAGE_TAG=3.7_${IMAGE_ARG_GLIBC_VERSION:-2.23-r3}
+export IMAGE_TAG=3.7_${IMAGE_ARG_GLIBC_VERSION:-2.23-r3}
 
 BUILDER_IMAGE_NAME=tmp/builder
 if [[ "$(docker images -q ${BUILDER_IMAGE_NAME}:${IMAGE_TAG} 2> /dev/null)" == "" ]]; then
