@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+set -e
+
+docker version
+docker-compose version
+
 WORK_DIR=$(pwd)
 
 if [ -n "${CI_OPT_DOCKER_REGISTRY_PASS}" ] && [ -n "${CI_OPT_DOCKER_REGISTRY_USER}" ]; then
