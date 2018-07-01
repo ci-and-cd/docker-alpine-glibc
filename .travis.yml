@@ -12,7 +12,7 @@ branches:
 dist: trusty
 env:
   global:
-  - IMAGE_ARG_ALPINE_MIRROR=dl-3.alpinelinux.org
+  - IMAGE_ARG_ALPINE_MIRROR=dl-cdn.alpinelinux.org
   - IMAGE_ARG_FILESERVER=
   matrix:
   - IMAGE_ARG_GCCLIBS_VERSION= IMAGE_ARG_GLIBC_VERSION=2.23-r3 IMAGE_ARG_ZLIB1_VERSION=
