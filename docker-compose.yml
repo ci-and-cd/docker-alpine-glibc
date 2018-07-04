@@ -8,7 +8,8 @@ services:
       dockerfile: Dockerfile
       args:
       - IMAGE_ARG_ALPINE_MIRROR=${IMAGE_ARG_ALPINE_MIRROR:-mirror.tuna.tsinghua.edu.cn}
-      - IMAGE_ARG_FILESERVER=${IMAGE_ARG_FILESERVER:-http://o9wbz99tz.bkt.clouddn.com}
+      - IMAGE_ARG_FILESERVER=${IMAGE_ARG_FILESERVER}
+      #- IMAGE_ARG_FILESERVER=${IMAGE_ARG_FILESERVER:-http://o9wbz99tz.bkt.clouddn.com}
       # Default values for JDK8
       #- IMAGE_ARG_GCCLIBS_VERSION=${IMAGE_ARG_GCCLIBS_VERSION}
       #- IMAGE_ARG_GLIBC_VERSION=${IMAGE_ARG_GLIBC_VERSION:-2.23-r3}
