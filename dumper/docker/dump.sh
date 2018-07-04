@@ -48,14 +48,15 @@ else
     rm -rf /data/root/usr/bin
 fi
 
-
 rm -rf /data/root/usr/lib
 
 # /data/root/usr/x86_64-alpine-linux-musl: no such file or directory
-mv /data/root/usr/bin /data/root/bin
-mv /data/root/usr/glibc-compat /data/root/glibc-compat
-rm -rf /data/root/usr; mkdir -p /data/root/usr
-mv /data/root/bin /data/root/usr/bin
-mv /data/root/glibc-compat /data/root/usr/glibc-compat
+if [ -d /data/root/usr/bin ]; then
+    mv /data/root/usr/bin /data/root/bin
+    mv /data/root/usr/glibc-compat /data/root/glibc-compat
+    rm -rf /data/root/usr; mkdir -p /data/root/usr
+    mv /data/root/bin /data/root/usr/bin
+    mv /data/root/glibc-compat /data/root/usr/glibc-compat
+fi
 
 rm -rf /data/root/var
