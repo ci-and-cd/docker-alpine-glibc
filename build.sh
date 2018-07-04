@@ -7,45 +7,24 @@ docker-compose version
 
 WORK_DIR=$(pwd)
 
-if [ -n "${CI_OPT_DOCKER_REGISTRY_PASS}" ] && [ -n "${CI_OPT_DOCKER_REGISTRY_USER}" ]; then
-    echo ${CI_OPT_DOCKER_REGISTRY_PASS} | docker login --password-stdin -u="${CI_OPT_DOCKER_REGISTRY_USER}" docker.io
-fi
+#if [ -n "${CI_OPT_DOCKER_REGISTRY_PASS}" ] && [ -n "${CI_OPT_DOCKER_REGISTRY_USER}" ]; then echo ${CI_OPT_DOCKER_REGISTRY_PASS} | docker login --password-stdin -u="${CI_OPT_DOCKER_REGISTRY_USER}" docker.io; fi
 
-export IMAGE_TAG=3.7_${IMAGE_ARG_GLIBC_VERSION:-2.23-r3}
+export IMAGE_PREFIX=${IMAGE_PREFIX:-cirepo};
+export IMAGE_NAME=${IMAGE_NAME:-alpine-glibc}
+export IMAGE_TAG=3.7_${IMAGE_ARG_GLIBC_VERSION:-2.25-r0}
 if [ "${TRAVIS_BRANCH}" != "master" ]; then export IMAGE_TAG=${IMAGE_TAG}-SNAPSHOT; fi
 
-BUILDER_IMAGE_NAME=tmp/builder
-if [[ "$(docker images -q ${BUILDER_IMAGE_NAME}:${IMAGE_TAG} 2> /dev/null)" == "" ]]; then
-    docker-compose build builder
-fi
+# Build image
+#if [[ "$(docker images -q ${IMAGE_PREFIX}/${IMAGE_NAME}:${IMAGE_TAG} 2> /dev/null)" == "" ]]; then
+    docker-compose build image
+#fi
 
-docker save ${BUILDER_IMAGE_NAME}:${IMAGE_TAG} > /tmp/builder.tar
-rm -rf /tmp/builder && mkdir -p /tmp/builder && tar -xf /tmp/builder.tar -C /tmp/builder
-for layer in /tmp/builder/*/layer.tar; do
-    echo ${layer}
-    mkdir -p $(dirname ${layer})/layer && tar -xf ${layer} -C $(dirname ${layer})/layer
-done
+## Build dumper image
+docker save ${IMAGE_PREFIX}/${IMAGE_NAME}:${IMAGE_TAG} > dumper/docker/image.tar
+docker-compose build dumper
 
-#LAST_DIFF_ID=$(docker image inspect -f '{{json .RootFS.Layers}}' ${BUILDER_IMAGE_NAME}:${IMAGE_TAG} | jq -r 'last' | awk -F':' '{print $2}')
-LAST_LAYER=$(find /tmp/builder -name "glibc-compat" | grep "/usr/glibc-compat" | awk -F'/' '{print $4}')
-echo LAST_LAYER ${LAST_LAYER}
+## Build archive image
+docker-compose build archive
 
-#tar cf ${WORK_DIR}/data/layer.tar -C /tmp/builder/${LAST_LAYER}/layer .
-cp -f /tmp/builder/${LAST_LAYER}/layer.tar data/layer.tar
-# remove apk settings, database and cache from archive
-for element in $(tar -tf data/layer.tar | grep -E '/apk(/)?.*/$' | sort -r -n); do
-    tar --delete -f data/layer.tar "${element}" > /dev/null 2>&1 || echo error on delete ${element}
-done
-# remove empty directories
-#tar --delete -f data/layer.tar 'tmp'
-for directory in $(tar tf data/layer.tar | grep -E '.*/$' | sort -r -n); do
-    if [ -z "$(tar -tf data/layer.tar | grep -E "${directory}.+")" ]; then
-        echo directory ${directory} in tarball is empty;
-        tar --delete -f data/layer.tar "${directory}" > /dev/null 2>&1 || echo error on delete ${directory}
-    fi
-done
-
-IMAGE_NAME=${IMAGE_PREFIX:-cirepo}/alpine-glibc
-
-docker-compose build alpine-glibc
-docker-compose push alpine-glibc
+#docker-compose push image
+#docker-compose push archive
