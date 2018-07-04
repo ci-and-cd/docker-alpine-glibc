@@ -40,9 +40,14 @@ rm -rf /data/root/etc/apk
 rm -rf /data/root/lib/apk
 
 # /data/root/usr/bin/* no such file or directory
-mv /data/root/usr/bin/strings /data/root/strings
-rm -rf /data/root/usr/bin; mkdir -p /data/root/usr/bin
-mv /data/root/strings /data/root/usr/bin/strings
+if [ -L /data/root/usr/bin/strings ]; then
+    mv /data/root/usr/bin/strings /data/root/strings;
+    rm -rf /data/root/usr/bin; mkdir -p /data/root/usr/bin
+    mv /data/root/strings /data/root/usr/bin/strings
+else
+    rm -rf /data/root/usr/bin
+fi
+
 
 rm -rf /data/root/usr/lib
 
