@@ -37,7 +37,7 @@ RUN set -ex \
            echo "http://archlinux.thaller.ws/core/os/x86_64/gcc-libs-${IMAGE_ARG_GCCLIBS_VERSION:-7.3.1+20180406-1}-x86_64.pkg.tar.xz"; \
            if [ ! -f /data/gcc-libs-${IMAGE_ARG_GCCLIBS_VERSION:-7.3.1+20180406-1}-x86_64.pkg.tar.xz ]; then \
                ${ARIA2C_DOWNLOAD} -d /data -o gcc-libs-${IMAGE_ARG_GCCLIBS_VERSION:-7.3.1+20180406-1}-x86_64.pkg.tar.xz \
-               "${IMAGE_ARG_FILESERVER:-http://archlinux.thaller.ws}/core/os/x86_64/gcc-libs-${IMAGE_ARG_GCCLIBS_VERSION:-7.3.1+20180406-1}-x86_64.pkg.tar.xz"; \
+               "${IMAGE_ARG_FILESERVER:-http://mirrors.aggregate.org/archlinux}/core/os/x86_64/gcc-libs-${IMAGE_ARG_GCCLIBS_VERSION:-7.3.1+20180406-1}-x86_64.pkg.tar.xz"; \
            fi; \
            mkdir /data/gcc; \
            tar -xf /data/gcc-libs-${IMAGE_ARG_GCCLIBS_VERSION:-7.3.1+20180406-1}-x86_64.pkg.tar.xz -C /data/gcc; \
