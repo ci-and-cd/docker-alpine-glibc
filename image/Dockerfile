@@ -21,7 +21,7 @@ RUN set -ex \
     && echo "http://${IMAGE_ARG_ALPINE_MIRROR:-dl-cdn.alpinelinux.org}/alpine/v3.7/main" > /etc/apk/repositories \
     && echo "http://${IMAGE_ARG_ALPINE_MIRROR:-dl-cdn.alpinelinux.org}/alpine/v3.7/community" >> /etc/apk/repositories \
     && echo "http://${IMAGE_ARG_ALPINE_MIRROR:-dl-cdn.alpinelinux.org}/alpine/edge/testing/" >> /etc/apk/repositories \
-    && apk add --update aria2 binutils libstdc++ \
+    && apk add --update binutils libstdc++ \
     && rm -rf /tmp/* /var/cache/apk/*
 
 RUN set -ex \
