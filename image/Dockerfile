@@ -43,7 +43,6 @@ RUN set -ex \
            tar -xf /data/gcc-libs-${IMAGE_ARG_GCCLIBS_VERSION:-7.3.1+20180406-1}-x86_64.pkg.tar.xz -C /data/gcc; \
            mv /data/gcc/usr/lib/libgcc* /data/gcc/usr/lib/libstdc++* /usr/glibc-compat/lib; \
            strip /usr/glibc-compat/lib/libgcc_s.so.* /usr/glibc-compat/lib/libstdc++.so*; \
-           apk del binutils; \
        fi \
     && if [ -n "${IMAGE_ARG_ZLIB1_VERSION}" ]; then \
            echo ===== Install archlinux zlib  =====; \
@@ -58,4 +57,5 @@ RUN set -ex \
            mv /data/zlib/usr/lib/* /usr/glibc-compat/lib; \
        fi \
     && rm -rf /data/* /etc/apk/* /tmp/* /var/cache/apk/*
+#    && apk del binutils; \
 #    && rm -rf /lib/apk/db
