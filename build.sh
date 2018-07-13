@@ -11,7 +11,7 @@ if [ -n "${CI_OPT_DOCKER_REGISTRY_PASS}" ] && [ -n "${CI_OPT_DOCKER_REGISTRY_USE
 
 export IMAGE_PREFIX=${IMAGE_PREFIX:-cirepo};
 export IMAGE_NAME=${IMAGE_NAME:-glibc}
-export IMAGE_TAG=${IMAGE_ARG_GLIBC_VERSION:-2.25-r0-alpine-3.7}
+export IMAGE_TAG=${IMAGE_ARG_GLIBC_VERSION:-2.25-r0}-alpine-3.7
 if [ "${TRAVIS_BRANCH}" != "master" ]; then export IMAGE_TAG=${IMAGE_TAG}-SNAPSHOT; fi
 
 # Build image
