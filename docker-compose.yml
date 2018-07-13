@@ -18,7 +18,7 @@ services:
       - IMAGE_ARG_GCCLIBS_VERSION=${IMAGE_ARG_GCCLIBS_VERSION}
       - IMAGE_ARG_GLIBC_VERSION=${IMAGE_ARG_GLIBC_VERSION:-2.25-r0}
       - IMAGE_ARG_ZLIB1_VERSION=${IMAGE_ARG_ZLIB1_VERSION}
-    image: ${IMAGE_PREFIX:-cirepi}/${IMAGE_NAME:-alpine-glibc}:${IMAGE_TAG:-3.7_2.25-r0}
+    image: ${IMAGE_PREFIX:-cirepi}/${IMAGE_NAME:-glibc}:${IMAGE_TAG:-2.25-r0-alpine-3.7}
   #docker-compose build dumper
   dumper:
     build:
@@ -30,4 +30,4 @@ services:
     build:
       context: .
       dockerfile: Dockerfile_archive
-    image: ${IMAGE_PREFIX:-cirepo}/${IMAGE_NAME:-alpine-glibc}:${IMAGE_TAG:-3.7_2.25-r0}-archive
+    image: ${IMAGE_PREFIX:-cirepo}/${IMAGE_NAME:-glibc}:${IMAGE_TAG:-2.25-r0-alpine-3.7}-archive

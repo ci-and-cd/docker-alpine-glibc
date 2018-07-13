@@ -4,7 +4,7 @@ Alpine glibc for multi-stage docker image build.
 
 Dockerfile [ci-and-cd/docker-alpine-glibc on Github](https://github.com/ci-and-cd/docker-alpine-glibc)
 
-[cirepo/alpine-glibc on Docker Hub](https://hub.docker.com/r/cirepo/alpine-glibc/)
+[cirepo/glibc on Docker Hub](https://hub.docker.com/r/cirepo/glibc/)
 
 
 The main caveat to note is that it does use musl libc instead of glibc and friends,
@@ -18,6 +18,6 @@ so this variant is usually a very safe choice.
 ```dockerfile
 
 FROM alpine:3.7
-COPY --from=cirepo/alpine-glibc:3.7_2.23-r3-archive /data/root /
+COPY --from=cirepo/glibc:2.23-r3-alpine-3.7-archive /data/root /
 
 ```
