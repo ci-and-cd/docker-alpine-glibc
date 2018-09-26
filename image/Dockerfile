@@ -47,13 +47,13 @@ RUN set -ex \
     && if [ -n "${IMAGE_ARG_ZLIB1_VERSION}" ]; then \
            echo ===== Install archlinux zlib  =====; \
            echo "https://www.archlinux.org/packages/core/x86_64/zlib/download"; \
-           echo "http://archlinux.thaller.ws/core/os/x86_64/zlib-1:${IMAGE_ARG_ZLIB1_VERSION:-1.2.11-2}-x86_64.pkg.tar.xz"; \
-           if [ ! -f /data/zlib-1:${IMAGE_ARG_ZLIB1_VERSION:-1.2.11-2}-x86_64.pkg.tar.xz ]; then \
-               ${ARIA2C_DOWNLOAD} -d /data -o zlib-1:${IMAGE_ARG_ZLIB1_VERSION:-1.2.11-2}-x86_64.pkg.tar.xz \
-               "${IMAGE_ARG_FILESERVER:-http://archlinux.thaller.ws}/core/os/x86_64/zlib-1:${IMAGE_ARG_ZLIB1_VERSION:-1.2.11-2}-x86_64.pkg.tar.xz"; \
+           echo "http://archlinux.thaller.ws/core/os/x86_64/zlib-1:${IMAGE_ARG_ZLIB1_VERSION:-1.2.11-3}-x86_64.pkg.tar.xz"; \
+           if [ ! -f /data/zlib-1:${IMAGE_ARG_ZLIB1_VERSION:-1.2.11-3}-x86_64.pkg.tar.xz ]; then \
+               ${ARIA2C_DOWNLOAD} -d /data -o zlib-1:${IMAGE_ARG_ZLIB1_VERSION:-1.2.11-3}-x86_64.pkg.tar.xz \
+               "${IMAGE_ARG_FILESERVER:-http://archlinux.thaller.ws}/core/os/x86_64/zlib-1:${IMAGE_ARG_ZLIB1_VERSION:-1.2.11-3}-x86_64.pkg.tar.xz"; \
            fi; \
            mkdir /data/zlib; \
-           tar -xf /data/zlib-1:${IMAGE_ARG_ZLIB1_VERSION:-1.2.11-2}-x86_64.pkg.tar.xz -C /data/zlib; \
+           tar -xf /data/zlib-1:${IMAGE_ARG_ZLIB1_VERSION:-1.2.11-3}-x86_64.pkg.tar.xz -C /data/zlib; \
            mv /data/zlib/usr/lib/* /usr/glibc-compat/lib; \
        fi \
     && rm -rf /data/* /etc/apk/* /tmp/* /var/cache/apk/*
