@@ -1,5 +1,5 @@
 
-FROM cirepo/nix:2.0.4-alpine-3.7
+FROM cirepo/nix:2.1.1-alpine-3.8
 
 
 USER root
