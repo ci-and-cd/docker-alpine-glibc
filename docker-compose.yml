@@ -30,4 +30,4 @@ services:
     build:
       context: .
       dockerfile: Dockerfile_archive
-    image: ${IMAGE_PREFIX:-cirepo}/${IMAGE_NAME:-glibc}:${IMAGE_TAG:-2.25-r0-alpine-3.8}-archive
+    image: ${IMAGE_PREFIX:-cirepo/}${IMAGE_NAME:-glibc}:${IMAGE_TAG:-2.25-r0-alpine-3.8}-archive
