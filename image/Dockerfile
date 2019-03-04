@@ -37,7 +37,7 @@ RUN set -ex \
            "${IMAGE_ARG_FILESERVER:-https://github.com}/sgerrand/alpine-pkg-glibc/releases/download/${IMAGE_ARG_GLIBC_VERSION:-2.29-r0}/glibc-${IMAGE_ARG_GLIBC_VERSION:-2.29-r0}.apk"; \
        fi \
     && apk add --allow-untrusted /data/glibc-${IMAGE_ARG_GLIBC_VERSION:-2.29-r0}.apk \
-    && if [[ -n "${IMAGE_ARG_GCCLIBS_VERSION}" ]]; then \
+    && if [[ -n "${IMAGE_ARG_GCCLIBS_VERSION}" ]] && [[ "${IMAGE_ARG_GCCLIBS_VERSION}" != "NA" ]]; then \
            echo ===== Install archlinux gcc-libs  =====; \
            echo "http://archlinux.thaller.ws/core/os/x86_64/gcc-libs-${IMAGE_ARG_GCCLIBS_VERSION:-8.2.1+20181127-1}-x86_64.pkg.tar.xz"; \
            if [ ! -f /data/gcc-libs-${IMAGE_ARG_GCCLIBS_VERSION:-8.2.1+20181127-1}-x86_64.pkg.tar.xz ]; then \
@@ -49,7 +49,7 @@ RUN set -ex \
            mv /data/gcc/usr/lib/libgcc* /data/gcc/usr/lib/libstdc++* /usr/glibc-compat/lib; \
            strip /usr/glibc-compat/lib/libgcc_s.so.* /usr/glibc-compat/lib/libstdc++.so*; \
        fi \
-    && if [[ -n "${IMAGE_ARG_ZLIB1_VERSION}" ]]; then \
+    && if [[ -n "${IMAGE_ARG_ZLIB1_VERSION}" ]] && [[ "${IMAGE_ARG_ZLIB1_VERSION}" != "NA" ]]; then \
            echo ===== Install archlinux zlib  =====; \
            echo "http://archlinux.thaller.ws/core/os/x86_64/zlib-1:${IMAGE_ARG_ZLIB1_VERSION:-1.2.11-3}-x86_64.pkg.tar.xz"; \
            if [[ ! -f /data/zlib-1:${IMAGE_ARG_ZLIB1_VERSION:-1.2.11-3}-x86_64.pkg.tar.xz ]]; then \
