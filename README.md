@@ -18,6 +18,6 @@ so this variant is usually a very safe choice.
 ```dockerfile
 
 FROM alpine:3.8
-COPY --from=cirepo/glibc:2.23-r3-alpine-3.8-archive /data/root /
+COPY --from=cirepo/glibc:2.29-r0-alpine-3.8-archive /data/root /
 
 ```

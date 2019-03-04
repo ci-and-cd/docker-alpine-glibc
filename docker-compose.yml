@@ -12,13 +12,13 @@ services:
       #- IMAGE_ARG_FILESERVER=${IMAGE_ARG_FILESERVER:-http://fileserver.infra.top}
       # Default values for JDK8
       #- IMAGE_ARG_GCCLIBS_VERSION=${IMAGE_ARG_GCCLIBS_VERSION}
-      #- IMAGE_ARG_GLIBC_VERSION=${IMAGE_ARG_GLIBC_VERSION:-2.23-r3}
+      #- IMAGE_ARG_GLIBC_VERSION=${IMAGE_ARG_GLIBC_VERSION:-2.29-r0}
       #- IMAGE_ARG_ZLIB1_VERSION=${IMAGE_ARG_ZLIB1_VERSION}
       # Default values for JDK9
       - IMAGE_ARG_GCCLIBS_VERSION=${IMAGE_ARG_GCCLIBS_VERSION}
-      - IMAGE_ARG_GLIBC_VERSION=${IMAGE_ARG_GLIBC_VERSION:-2.25-r0}
+      - IMAGE_ARG_GLIBC_VERSION=${IMAGE_ARG_GLIBC_VERSION:-2.29-r0}
       - IMAGE_ARG_ZLIB1_VERSION=${IMAGE_ARG_ZLIB1_VERSION}
-    image: ${IMAGE_PREFIX:-cirepo/}${IMAGE_NAME:-glibc}:${IMAGE_TAG:-2.25-r0-alpine-3.8}
+    image: ${IMAGE_PREFIX:-cirepo/}${IMAGE_NAME:-glibc}:${IMAGE_TAG:-2.29-r0-alpine-3.9}
   #docker-compose build dumper
   dumper:
     build:
@@ -30,4 +30,4 @@ services:
     build:
       context: .
       dockerfile: Dockerfile_archive
-    image: ${IMAGE_PREFIX:-cirepo/}${IMAGE_NAME:-glibc}:${IMAGE_TAG:-2.25-r0-alpine-3.8}-archive
+    image: ${IMAGE_PREFIX:-cirepo/}${IMAGE_NAME:-glibc}:${IMAGE_TAG:-2.29-r0-alpine-3.9}-archive
