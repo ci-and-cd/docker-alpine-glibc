@@ -63,3 +63,5 @@ RUN set -ex \
     && rm -rf /data/* /etc/apk/* /tmp/* /var/cache/apk/*
 #    && apk del binutils; \
 #    && rm -rf /lib/apk/db
+
+USER alpine
